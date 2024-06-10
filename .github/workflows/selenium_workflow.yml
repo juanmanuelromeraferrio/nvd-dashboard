@@ -25,3 +25,13 @@ jobs:
 
       - name: Run Selenium script
         run: python script.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add nvd_dashboard_data.csv
+          git commit -m 'Update NVD dashboard data'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
